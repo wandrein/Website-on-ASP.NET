@@ -1,0 +1,107 @@
+﻿@model IEnumerable<OdevD1.Models.Bolgeler>
+
+@{
+    ViewBag.Title = "Bölgeler";
+}
+
+<div class="container mt-5">
+
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-6">
+            <h2 class="fw-bold">Bölgeler</h2>
+            <p class="text-muted mb-0">
+                Şehirlere bağlı bölgelerin listesi
+            </p>
+        </div>
+        <div class="col-md-6 text-end">
+            @if (User.Identity.Name =="f@f.com") { 
+            @Html.ActionLink(
+                "Yeni Bölge Ekle",
+                "Create",
+                null,
+                new { @class = "btn btn-success" }
+            )}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+
+                <div class="card-body">
+
+                    <table class="table table-hover align-middle">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Isim)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Hakkinda)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Sehirler.Isim)
+                                </th>
+                                @if (User.Identity.Name == "f@f.com") {
+                                    <th style="width:200px;">İşlemler</th> }
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            @Html.DisplayFor(modelItem => item.Isim)
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        <span class="text-muted">
+                                            @Html.DisplayFor(modelItem => item.Hakkinda)
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        <span class="badge bg-primary">
+                                            @Html.DisplayFor(modelItem => item.Sehirler.Isim)
+                                        </span>
+                                    </td>
+
+                                    @if (User.Identity.Name == "f@f.com") { 
+                                        <td>
+                                            @Html.ActionLink(
+                                                "Düzenle",
+                                                "Edit",
+                                                new { id = item.Id },
+                                                new { @class = "btn btn-sm btn-warning me-1" }
+                                            )
+
+                                            @Html.ActionLink(
+                                                "Detay",
+                                                "Details",
+                                                new { id = item.Id },
+                                                new { @class = "btn btn-sm btn-info me-1" }
+                                            )
+
+                                            @Html.ActionLink(
+                                                "Sil",
+                                                "Delete",
+                                                new { id = item.Id },
+                                                new { @class = "btn btn-sm btn-danger" }
+                                            )
+                                        </td> }
+                                </tr>
+                            }
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+﻿@model OdevD1.Models.Nufus
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Nüfus Silme</h2>
+
+<h3>Kalıcı olarak silmek istediğinize emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Yil)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yil)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NufusMiktar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NufusMiktar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sehirler.Isim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sehirler.Isim)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye Dön", "Index")
+        </div>
+    }
+</div>

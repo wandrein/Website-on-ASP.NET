@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6297cec01ba44bda99386c3e1260f144" Name="Diagram1">
+        <EntityTypeShape EntityType="ChadDBModel.Bolgeler" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChadDBModel.Nufus" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ChadDBModel.Sehirler" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="ChadDBModel.FK__Bolgeler__SehirI__267ABA7A" ManuallyRouted="false" />
+        <AssociationConnector Association="ChadDBModel.FK__Nufus__SehirId__29572725" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ChadDBModel.SliderResimler" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="ChadDBModel.ResimlerSlider" Width="1.5" PointX="5.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ChadDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bolgeler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Isim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hakkinda" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SehirId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Nufus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SehirId" Type="int" Nullable="false" />
+          <Property Name="Yil" Type="int" Nullable="false" />
+          <Property Name="NufusMiktar" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ResimlerSlider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ResimUrl" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Baslik" Type="nvarchar" MaxLength="100" />
+          <Property Name="Aciklama" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Sehirler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Isim" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nufus" Type="int" Nullable="false" />
+          <Property Name="Hakkinda" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Bolgeler__SehirI__267ABA7A">
+          <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+          <End Role="Bolgeler" Type="Self.Bolgeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehirler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bolgeler">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nufus__SehirId__29572725">
+          <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+          <End Role="Nufus" Type="Self.Nufus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehirler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nufus">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChadDBModelStoreContainer">
+          <EntitySet Name="Bolgeler" EntityType="Self.Bolgeler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Nufus" EntityType="Self.Nufus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ResimlerSlider" EntityType="Self.ResimlerSlider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sehirler" EntityType="Self.Sehirler" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bolgeler__SehirI__267ABA7A" Association="Self.FK__Bolgeler__SehirI__267ABA7A">
+            <End Role="Sehirler" EntitySet="Sehirler" />
+            <End Role="Bolgeler" EntitySet="Bolgeler" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nufus__SehirId__29572725" Association="Self.FK__Nufus__SehirId__29572725">
+            <End Role="Sehirler" EntitySet="Sehirler" />
+            <End Role="Nufus" EntitySet="Nufus" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ChadDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bolgeler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hakkinda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SehirId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sehirler" Relationship="Self.FK__Bolgeler__SehirI__267ABA7A" FromRole="Bolgeler" ToRole="Sehirler" />
+        </EntityType>
+        <EntityType Name="Nufus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SehirId" Type="Int32" Nullable="false" />
+          <Property Name="Yil" Type="Int32" Nullable="false" />
+          <Property Name="NufusMiktar" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Sehirler" Relationship="Self.FK__Nufus__SehirId__29572725" FromRole="Nufus" ToRole="Sehirler" />
+        </EntityType>
+        <EntityType Name="Sehirler">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Isim" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nufus" Type="Int32" Nullable="false" />
+          <Property Name="Hakkinda" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Bolgelers" Relationship="Self.FK__Bolgeler__SehirI__267ABA7A" FromRole="Sehirler" ToRole="Bolgeler" />
+          <NavigationProperty Name="Nufus1" Relationship="Self.FK__Nufus__SehirId__29572725" FromRole="Sehirler" ToRole="Nufus" />
+        </EntityType>
+        <Association Name="FK__Bolgeler__SehirI__267ABA7A">
+          <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+          <End Role="Bolgeler" Type="ChadDBModel.Bolgeler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehirler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bolgeler">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Nufus__SehirId__29572725">
+          <End Role="Sehirler" Type="Self.Sehirler" Multiplicity="1" />
+          <End Role="Nufus" Type="ChadDBModel.Nufus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sehirler">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Nufus">
+              <PropertyRef Name="SehirId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ChadDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bolgelers" EntityType="ChadDBModel.Bolgeler" />
+          <EntitySet Name="Nufuslars" EntityType="ChadDBModel.Nufus" />
+          <EntitySet Name="Sehirlers" EntityType="Self.Sehirler" />
+          <AssociationSet Name="FK__Bolgeler__SehirI__267ABA7A" Association="Self.FK__Bolgeler__SehirI__267ABA7A">
+            <End Role="Sehirler" EntitySet="Sehirlers" />
+            <End Role="Bolgeler" EntitySet="Bolgelers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Nufus__SehirId__29572725" Association="Self.FK__Nufus__SehirId__29572725">
+            <End Role="Sehirler" EntitySet="Sehirlers" />
+            <End Role="Nufus" EntitySet="Nufuslars" />
+          </AssociationSet>
+          <EntitySet Name="ResimlerSliders" EntityType="ChadDBModel.ResimlerSlider" />
+        </EntityContainer>
+        <EntityType Name="ResimlerSlider">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ResimUrl" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Baslik" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Aciklama" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ChadDBModelStoreContainer" CdmEntityContainer="ChadDBEntities">
+          <EntitySetMapping Name="Bolgelers">
+            <EntityTypeMapping TypeName="ChadDBModel.Bolgeler">
+              <MappingFragment StoreEntitySet="Bolgeler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Isim" ColumnName="Isim" />
+                <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
+                <ScalarProperty Name="SehirId" ColumnName="SehirId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Nufuslars">
+            <EntityTypeMapping TypeName="ChadDBModel.Nufus">
+              <MappingFragment StoreEntitySet="Nufus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SehirId" ColumnName="SehirId" />
+                <ScalarProperty Name="Yil" ColumnName="Yil" />
+                <ScalarProperty Name="NufusMiktar" ColumnName="NufusMiktar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sehirlers">
+            <EntityTypeMapping TypeName="ChadDBModel.Sehirler">
+              <MappingFragment StoreEntitySet="Sehirler">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Isim" ColumnName="Isim" />
+                <ScalarProperty Name="Nufus" ColumnName="Nufus" />
+                <ScalarProperty Name="Hakkinda" ColumnName="Hakkinda" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ResimlerSliders">
+            <EntityTypeMapping TypeName="ChadDBModel.ResimlerSlider">
+              <MappingFragment StoreEntitySet="ResimlerSlider">
+                <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
+                <ScalarProperty Name="Baslik" ColumnName="Baslik" />
+                <ScalarProperty Name="ResimUrl" ColumnName="ResimUrl" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
